@@ -13,15 +13,12 @@ def build_poly(x, degree):
 
     Returns:
         poly: numpy array of shape (N,d+1)
-
-    >>> build_poly(np.array([0.0, 1.5]), 2)
-    array([[1.  , 0.  , 0.  ],
-           [1.  , 1.5 , 2.25]])
     """
-    # ***************************************************
-    # COPY YOUR CODE FROM EX03 HERE
-    # polynomial basis function: TODO
-    # this function should return the matrix formed
-    # by applying the polynomial basis to the input data
-    # ***************************************************
-    raise NotImplementedError
+    N, D = x.shape[0], degree + 1
+    exponents = np.arange(D)
+    phi = np.zeros((N, D))
+    for i in range(N):
+        base = np.repeat(x[i], D)
+        phi[i] = np.power(base, exponents)
+    
+    return phi
